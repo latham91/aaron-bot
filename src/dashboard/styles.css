@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #030713;
+    color: #f9fafb;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    background-color: #59677c;
+    margin: 10px 0;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+ul {
+    margin: 10px;
+}
+
+header {
+    width: 100%;
+    padding: 20px 0;
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h1 {
+            font-weight: 900;
+            font-size: 30px;
+        }
+    }
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 100px;
+    height: calc(100vh - 150px);
+    position: relative;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .role-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+
+    .role-container-bot {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+
+        .avatar-bot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+    }
+
+    .message-bot {
+        text-align: left;
+    }
+
+    .chat-bubble {
+        background-color: #1f2937;
+        padding: 20px;
+        border-radius: 10px;
+    }
+}
+
+.form-wrapper {
+    margin-top: 100px;
+}
+
+form {
+    position: absolute;
+    max-width: 1200px;
+    margin: 0 auto;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        padding: 10px 40px;
+        background-color: #48b572;
+        color: #f9fafb;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
