@@ -1,10 +1,24 @@
+// Select elements
 const chatInput = document.querySelector(".chat-input");
 const sendButton = document.querySelector(".send-button");
 const main = document.querySelector("main");
 const form = document.querySelector("form");
 const loading = document.querySelector(".loading");
 
+// Create user message
 const createUserMessage = (message) => {
+    const chatBubble = createChatBubble("User", message);
+    main.appendChild(chatBubble);
+};
+
+// Create bot message
+const createBotMessage = (message) => {
+    const chatBubble = createChatBubble("Aaron Bot", message);
+    main.appendChild(chatBubble);
+};
+
+// Create chat bubble
+const createChatBubble = (role, message) => {
     const chatBubble = document.createElement("div");
     chatBubble.classList.add("chat-bubble");
 
@@ -12,56 +26,27 @@ const createUserMessage = (message) => {
     roleContainer.classList.add("role-container");
 
     const avatar = document.createElement("img");
-    avatar.src = "./user.png";
+    avatar.src = role === "User" ? "./user.png" : "./avatar.png";
     avatar.alt = "avatar";
     avatar.width = 50;
 
     const h2 = document.createElement("h2");
-    h2.textContent = "User";
+    h2.textContent = role;
 
     roleContainer.appendChild(avatar);
     roleContainer.appendChild(h2);
 
     const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message");
-    messageDiv.textContent = message;
-
-    chatBubble.appendChild(roleContainer);
-    chatBubble.appendChild(messageDiv);
-
-    main.appendChild(chatBubble);
-};
-
-const createBotMessage = (message) => {
-    const chatBubble = document.createElement("div");
-    chatBubble.classList.add("chat-bubble");
-
-    const roleContainer = document.createElement("div");
-    roleContainer.classList.add("role-container-bot");
-
-    const avatar = document.createElement("img");
-    avatar.classList.add("avatar-bot");
-    avatar.src = "./avatar.png";
-    avatar.alt = "avatar";
-    avatar.width = 50;
-
-    const h2 = document.createElement("h2");
-    h2.textContent = "Aaron Bot";
-
-    roleContainer.appendChild(h2);
-    roleContainer.appendChild(avatar);
-
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message-bot");
-    messageDiv.classList.add("prettyprint");
+    messageDiv.classList.add(role === "User" ? "message" : "message-bot");
     messageDiv.innerHTML = message;
 
     chatBubble.appendChild(roleContainer);
     chatBubble.appendChild(messageDiv);
 
-    main.appendChild(chatBubble);
+    return chatBubble;
 };
 
+// Submit form event listener
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const message = chatInput.value;
@@ -70,16 +55,27 @@ form.addEventListener("submit", async (e) => {
 
     loading.classList.remove("hidden");
 
-    const response = await fetch("/chat", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message }),
-    });
+    try {
+        const response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message }),
+        });
 
-    const data = await response.json();
-    loading.classList.add("hidden");
+        if (!response.ok) {
+            throw new Error("Failed to fetch response");
+        }
 
-    createBotMessage(data.response);
+        const data = await response.json();
+        createBotMessage(data.response);
+    } catch (error) {
+        console.error("Error:", error.message);
+        // Handle error
+    } finally {
+        loading.classList.add("hidden");
+        // Scroll to the bottom of the chat
+        main.scrollTop = main.scrollHeight;
+    }
 });

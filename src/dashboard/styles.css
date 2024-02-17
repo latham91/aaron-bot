@@ -34,7 +34,12 @@ code.hljs {
 
 ul {
     margin: 10px;
-    list-style-position: inside;
+    list-style-position: inside !important;
+}
+
+ol {
+    margin: 10px;
+    list-style-position: inside !important;
 }
 
 header {
