@@ -24,7 +24,7 @@ const createUserMessage = (message) => {
 
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message");
-    messageDiv.innerHTML = DOMPurify.sanitize(message);
+    messageDiv.textContent = message;
 
     chatBubble.appendChild(roleContainer);
     chatBubble.appendChild(messageDiv);
@@ -54,7 +54,8 @@ const createBotMessage = (message) => {
 
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message-bot");
-    messageDiv.innerHTML = DOMPurify.sanitize(message);
+    messageDiv.classList.add("prettyprint");
+    messageDiv.innerHTML = message;
 
     chatBubble.appendChild(roleContainer);
     chatBubble.appendChild(messageDiv);
@@ -64,7 +65,7 @@ const createBotMessage = (message) => {
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const message = DOMPurify.sanitize(chatInput.value);
+    const message = chatInput.value;
     createUserMessage(message);
     chatInput.value = "";
 
@@ -77,7 +78,7 @@ form.addEventListener("submit", async (e) => {
     });
 
     const data = await response.json();
-    const reply = DOMPurify.sanitize(marked.use(markedCodePreview()).parse(data.response));
+    // const reply = marked.parse(data.response);
 
-    createBotMessage(reply);
+    createBotMessage(data.response);
 });

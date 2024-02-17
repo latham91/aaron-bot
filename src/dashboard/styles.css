@@ -8,15 +8,28 @@ body {
     font-family: "Roboto", sans-serif;
     background-color: #030713;
     color: #f9fafb;
+    line-height: 28px;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-    background-color: #59677c;
-    margin: 10px 0;
-    padding: 2px;
-    border-radius: 5px;
+    background-color: #282c33;
     font-size: 12px;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-weight: 500;
+    border: 1px solid #526379;
+}
+
+pre code.hljs {
+    display: block;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+code.hljs {
+    display: inline;
 }
 
 ul {
@@ -40,6 +53,11 @@ header {
             font-size: 30px;
         }
     }
+}
+
+a {
+    font-weight: 600;
+    color: #f9fafb;
 }
 
 main {
