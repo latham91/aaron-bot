@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
-const dbConnection = require("./db/connection");
 const path = require("path");
 const cors = require("cors");
 
@@ -46,7 +45,7 @@ let messages = [
 ];
 
 // Routes
-app.use("/dashboard", express.static(path.join(__dirname, "dashboard")));
+app.use("/", express.static(path.join(__dirname, "dashboard")));
 app.post("/chat", async (req, res) => {
     try {
         const { message } = req.body;
@@ -70,6 +69,5 @@ app.post("/chat", async (req, res) => {
 
 // Server listen
 app.listen(port, () => {
-    dbConnection();
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`);
 });
