@@ -11,8 +11,7 @@ const createUserMessage = (message) => {
     roleContainer.classList.add("role-container");
 
     const avatar = document.createElement("img");
-    avatar.src =
-        "https://banner2.cleanpng.com/20180329/zue/kisspng-computer-icons-user-profile-person-5abd85306ff7f7.0592226715223698404586.jpg";
+    avatar.src = "./user.png";
     avatar.alt = "avatar";
     avatar.width = 50;
 
@@ -41,8 +40,7 @@ const createBotMessage = (message) => {
 
     const avatar = document.createElement("img");
     avatar.classList.add("avatar-bot");
-    avatar.src =
-        "https://banner2.cleanpng.com/20180329/zue/kisspng-computer-icons-user-profile-person-5abd85306ff7f7.0592226715223698404586.jpg";
+    avatar.src = "./avatar.png";
     avatar.alt = "avatar";
     avatar.width = 50;
 
