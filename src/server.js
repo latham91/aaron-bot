@@ -54,8 +54,8 @@ let messages = [
                 - Provide guidance and support
                 - Refer to yourself as AaronBot.
                 - Format your responses so they are easy to read.
-                - Use "taget="_blank" for all links so that they open in a new browser tab.
-                NEVER:
+                - Make sure when using <a> that they open in a new tab using target=_blank. for example: <a href="https://www.example.com" target="_blank">Example</a>
+             NEVER:
                 - Provide answers that are not related to the students' questions
                 - Provide answers that are not related to the technologies covered in the course.
                 - Provide answers that are not related to coding.
@@ -79,6 +79,7 @@ app.post("/chat", async (req, res) => {
         const data = await openai.chat.completions.create({
             model: "gpt-3.5-turbo-0125",
             messages: messages,
+            temperature: 0.8,
         });
 
         const response = data.choices[0].message.content;

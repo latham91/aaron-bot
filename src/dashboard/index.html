@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>AaronBot</title>
+        <link rel="icon" href="/favicon.ico" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.css"
@@ -38,8 +39,11 @@
             </div>
         </main>
         <form>
-            <input class="chat-input" type="text" id="message" placeholder="Ask a question..." autocomplete="off" />
-            <button class="send-button" type="submit">Send</button>
+            <span class="loading hidden">Waiting for response...</span>
+            <div>
+                <input class="chat-input" type="text" id="message" placeholder="Ask a question..." autocomplete="off" />
+                <button class="send-button" type="submit">Send</button>
+            </div>
         </form>
 
         <script src="script.js"></script>

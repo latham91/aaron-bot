@@ -2,6 +2,7 @@ const chatInput = document.querySelector(".chat-input");
 const sendButton = document.querySelector(".send-button");
 const main = document.querySelector("main");
 const form = document.querySelector("form");
+const loading = document.querySelector(".loading");
 
 const createUserMessage = (message) => {
     const chatBubble = document.createElement("div");
@@ -67,6 +68,8 @@ form.addEventListener("submit", async (e) => {
     createUserMessage(message);
     chatInput.value = "";
 
+    loading.classList.remove("hidden");
+
     const response = await fetch("/chat", {
         method: "POST",
         headers: {
@@ -76,7 +79,7 @@ form.addEventListener("submit", async (e) => {
     });
 
     const data = await response.json();
-    // const reply = marked.parse(data.response);
+    loading.classList.add("hidden");
 
     createBotMessage(data.response);
 });
