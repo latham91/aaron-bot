@@ -23,18 +23,24 @@ const createChatBubble = (role, message) => {
     chatBubble.classList.add("chat-bubble");
 
     const roleContainer = document.createElement("div");
-    roleContainer.classList.add("role-container");
+    roleContainer.classList.add(role === "User" ? "role-container" : "role-container-bot");
 
     const avatar = document.createElement("img");
     avatar.src = role === "User" ? "./user.png" : "./avatar.png";
     avatar.alt = "avatar";
     avatar.width = 50;
+    avatar.classList.add(role === "User" ? "avatar" : "avatar-bot");
 
     const h2 = document.createElement("h2");
     h2.textContent = role;
 
-    roleContainer.appendChild(avatar);
-    roleContainer.appendChild(h2);
+    if (role === "User") {
+        roleContainer.appendChild(avatar);
+        roleContainer.appendChild(h2);
+    } else {
+        roleContainer.appendChild(h2);
+        roleContainer.appendChild(avatar);
+    }
 
     const messageDiv = document.createElement("div");
     messageDiv.classList.add(role === "User" ? "message" : "message-bot");
